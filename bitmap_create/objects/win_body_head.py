@@ -1,6 +1,6 @@
 from bitmap_create.interface.body_and_head import Body, Header
 from bitmap_create.objects.pixel import Pixel
-from tools.tools import CreationProver, Translator
+from tools import CreationProver, Translator
 
 
 class WinHeader(Header):
@@ -166,7 +166,7 @@ class WinBody(Body):
         return self.__pixels
 
     def get_body(self) -> list[int]:
-        bytes_per_pixel = 24 // 8
+        bytes_per_pixel = self.get_color_deph() // 8
         row_bytes = self.get_width() * bytes_per_pixel
         padding_per_row = (4 - (row_bytes % 4)) % 4
         padding_per_row_in_byte = [0] * padding_per_row
@@ -181,9 +181,6 @@ class WinBody(Body):
                 row_pixel_counter = 0
         return pixels_in_bytes
 
-    def get_padding(self):
-        return self.__pixels[0].get_padding()
 
     def get_color_deph(self) -> int:
         return type(self.__pixels[0]).get_color_depth()
-

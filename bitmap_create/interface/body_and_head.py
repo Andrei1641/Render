@@ -7,10 +7,6 @@ class Body(ABC):
         ...
 
     @abstractmethod
-    def get_padding(self) -> int:
-        ...
-
-    @abstractmethod
     def get_color_deph(self) -> int:
         ...
 

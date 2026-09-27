@@ -1,5 +1,5 @@
 from bitmap_create.objects.pixel import *
-from tools.tools import Translator
+from tools import Translator
 
 
 class PixelXXBit:

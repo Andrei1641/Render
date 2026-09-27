@@ -1,5 +1,5 @@
 from bitmap_create.interface.pixel import Pixel
-from tools.tools import Translator
+from tools import Translator
 
 
 class Pixel24Bit(Pixel):
