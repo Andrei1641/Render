@@ -1,11 +1,11 @@
-from bitmap_calculate.objects.figures import Point, Line
+from bitmap_calculate.objects.figures import Point, Line, Figure
 from bitmap_calculate.objects.pixel import PixelXXBit, PixelAdapter
 from bitmap_create.interface.pixel import Pixel
 
 
 class Frame:
     def __init__(self, width: int, height: int):
-        self.__pixels: list[list[PixelXXBit]] = [] #y x
+        self.__pixels: list[list[PixelXXBit]] = [] #y x    size is 1X1
         for i in range(height):
             self.__pixels.append(PixelXXBit(0,0,0) * width)
 
@@ -32,8 +32,5 @@ class Frame:
     def draw_circle(self, center: Point, radius: int, color: tuple[int,int,int]):
         ...
 
-    def draw_arbitrary_figure(self, points: list[Point], color: tuple[int,int,int]):
+    def find_next_pixel(self, point: Point, figure: Figure) -> PixelXXBit:
         ...
-
-    # def draw_function(self):
-    #     ...

@@ -3,7 +3,6 @@ from tools import Translator
 
 
 class Pixel24Bit(Pixel):
-    __padding: int = 0
 
     @classmethod
     def get_color_depth(cls) -> int:
@@ -13,10 +12,7 @@ class Pixel24Bit(Pixel):
         self.__red = red
         self.__green = green
         self.__blue = blue
-        Pixel24Bit.__padding += 1
 
-    def get_padding(self) -> int:
-        return Pixel24Bit.__padding
 
     def to_bytes(self) -> list[int]:
         pixel_in_bin: list[int] = []

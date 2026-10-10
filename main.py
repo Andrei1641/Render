@@ -7,10 +7,10 @@ from bitmap_create.objects.file_writer import PictureCreator
 
 #logic
 WIDTH: int = 5
-HEIGHT: int = 1
+HEIGHT: int = 5
 
 frame = Frame(WIDTH, HEIGHT)
-frame.draw_point(Point(0, 0), (255, 0, 0))
+frame.draw_point(Point(0, 1), (255, 0, 0))
 frame.draw_point(Point(2, 0), (255, 0, 0))
 
 #render

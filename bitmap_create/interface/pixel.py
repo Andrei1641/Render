@@ -9,6 +9,3 @@ class Pixel(ABC):
     @abstractmethod
     def to_bytes(self) -> list[int]:
         ...
-    @abstractmethod
-    def get_padding(self) -> int:
-        ...
