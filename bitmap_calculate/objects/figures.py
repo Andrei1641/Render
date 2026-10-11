@@ -20,14 +20,25 @@ class Round(Figure):
 
     def calculate_point_side(self, point: Point) -> int:
         if ((self.__x_0 - point.x)**2 + (self.__y_0 - point.y)**2)** 0.5 < self.__r:
-            return 1
-        else:
             return -1
+        else:
+            return 1
 
     def get_slope(self, x: float = 0) -> None|float:
         """render doesn't need round's slope, it uses only second quadrant for calculations and then mirror the results"""
         return 1
 
+    @property
+    def x_0(self) -> float:
+        return self.__x_0
+
+    @property
+    def y_0(self) -> float:
+        return self.__y_0
+
+    @property
+    def r(self) -> float:
+        return self.__r
 
 
 class Line(Figure):
