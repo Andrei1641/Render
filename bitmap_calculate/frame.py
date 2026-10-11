@@ -33,4 +33,14 @@ class Frame:
         ...
 
     def find_next_pixel(self, point: Point, figure: Figure) -> PixelXXBit:
-        ...
+        """search next pixel from left to right(from bottom to top)"""
+        point_side = figure.calculate_point_side(point)
+        slope = figure.get_slope(point.x)
+        if point_side == -1 or slope == 0:
+            return self.__pixels[round(point.y)][round(point.x + 1)]
+        elif slope < 0 and point_side == 1:
+            return self.__pixels[round(point.y - 1)][round(point.x)]
+        elif slope > 0 and point_side == 1:
+            return self.__pixels[round(point.y + 1)][round(point.x)]
+        else:
+            return self.__pixels[round(point.y + 1)][round(point.x)]
