@@ -11,7 +11,7 @@ class Figure(ABC):
 
 class Round(Figure):
     """
-    f(x) = y_0 + (r**2 - (x - x_0)**2)**0,5
+    f(x) = y_0 +- (r**2 - (x - x_0)**2)**0,5
     """
     def __init__(self, r: float, center: Point):
         self.__x_0: float = center.x
@@ -19,8 +19,7 @@ class Round(Figure):
         self.__r = r
 
     def calculate_point_side(self, point: Point) -> int:
-        if (point.x < self.__x_0 - self.__r or point.x > self.__x_0 + self.__r
-         or point.y < self.__y_0 - self.__r or point.y > self.__y_0 + self.__r):
+        if ((self.__x_0 - point.x)**2 + (self.__y_0 - point.y)**2)** 0.5 < self.__r:
             return 1
         else:
             return -1
