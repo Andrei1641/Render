@@ -41,7 +41,7 @@ class Frame:
         """search next pixel from left to right(from bottom to top)"""
         point_side = figure.calculate_point_side(point)
         slope = figure.get_slope(point.x)
-        if not slope:
+        if slope is None:
             return Point(point.x, point.y + 1)
         elif slope < 0 and point_side == -1:
             return Point(point.x + 1, point.y)

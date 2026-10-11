@@ -10,7 +10,7 @@ WIDTH: int = 200
 HEIGHT: int = 200
 
 frame = Frame(WIDTH, HEIGHT)
-frame.draw_line(Line(Point(0, 0), Point(0, 200)), (255, 0, 0))
+frame.draw_line(Line(Point(0, 0), Point(200, 0)), (255, 0, 0))
 
 #render
 normalized_render_pixels: list[Pixel] = frame.get_render_pixels()
