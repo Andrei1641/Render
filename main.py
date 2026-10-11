@@ -1,17 +1,16 @@
 from bitmap_calculate.frame import Frame
-from bitmap_calculate.objects.figures import Point
+from bitmap_calculate.objects.figures import *
 from bitmap_create.interface.body_and_head import Header, Body
 from bitmap_create.objects.pixel import *
 from bitmap_create.objects.win_body_head import WinHeader, WinBody
 from bitmap_create.objects.file_writer import PictureCreator
 
 #logic
-WIDTH: int = 5
-HEIGHT: int = 5
+WIDTH: int = 200
+HEIGHT: int = 200
 
 frame = Frame(WIDTH, HEIGHT)
-frame.draw_point(Point(0, 1), (255, 0, 0))
-frame.draw_point(Point(2, 0), (255, 0, 0))
+frame.draw_line(Line(Point(0, 0), Point(0, 200)), (255, 0, 0))
 
 #render
 normalized_render_pixels: list[Pixel] = frame.get_render_pixels()

@@ -52,6 +52,10 @@ class PixelXXBit:
         self.__blue = blue
         PixelXXBit.__set_biggest_number(blue)
 
+    def set_color(self, color: tuple[int, int, int]):
+        self.__red = color[0]
+        self.__green = color[1]
+        self.__blue = color[2]
 
     def __mul__(self, other: int):
         calculation_pixels: list[PixelXXBit] = []
