@@ -72,7 +72,7 @@ class PictureReader:
         return raw_body
 
     @staticmethod
-    def __create_calculate_pixels(raw_body: bytes, header: Header) -> list[list[PixelXXBit]]:  #!!!
+    def __create_calculate_pixels(raw_body: bytes, header: Header) -> list[list[PixelXXBit]]:  # !!!
         calculate_pixels = None
         if isinstance(header, WinHeader):
             pixel_depth: int = header.get_depth()
@@ -82,27 +82,19 @@ class PictureReader:
             padding = (4 - row_size % 4) % 4
 
             calculate_pixels: list[list[PixelXXBit]] = []
-            pixel_counter: int = 0
-            row_width_counter: int = 0
-            tmp_calculate_pixel: PixelXXBit = PixelXXBit(0,0,0)
+            tmp_calculate_pixel: PixelXXBit = PixelXXBit(0, 0, 0)
             tmp_row: list[PixelXXBit] = []
-            for i in range(len(raw_body)):
-                if pixel_counter == 0:
-                    tmp_calculate_pixel.blue = int(raw_body[i])
-                    pixel_counter += 1
-                elif pixel_counter == 1:
-                    tmp_calculate_pixel.green = int(raw_body[i])
-                    pixel_counter += 1
-                elif pixel_counter == 2:
-                    tmp_calculate_pixel.red = int(raw_body[i])
-                    pixel_counter = 0
-                    row_width_counter += 1
-                    tmp_row.append(deepcopy(tmp_calculate_pixel))
+            i = 0
 
-                if row_width_counter >= row_width:
+            while i < len(raw_body):
+                tmp_calculate_pixel.blue = raw_body[i]
+                tmp_calculate_pixel.green = raw_body[i + 1]
+                tmp_calculate_pixel.red = raw_body[i + 2]
+                tmp_row.append(deepcopy(tmp_calculate_pixel))
+                i += 3
+                if len(tmp_row) == row_width:
                     calculate_pixels.append(tmp_row)
                     tmp_row = []
-                    row_width_counter = 0
                     i += padding
         if not calculate_pixels:
             raise TypeError(f'there is no such header type {type(header)}')
