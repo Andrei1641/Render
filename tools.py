@@ -33,6 +33,6 @@ class Translator:
 class CreationProver:
     @staticmethod
     def is_out_of_border(byte_number_border: int, number: int) -> bool:
-        if number < 2 ** (8 * byte_number_border):
+        if 0 <= number < 2 ** (8 * byte_number_border):
             return True
-        return False
+        raise ValueError(f'false number {number}')

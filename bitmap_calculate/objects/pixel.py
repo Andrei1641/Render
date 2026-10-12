@@ -79,13 +79,6 @@ class PixelAdapter:
             render_pixels.append(tmp_render_pixels_row)
         return render_pixels
 
-    @staticmethod
-    def normalize_pixels(render_pixels: list[list[Pixel]]) -> list[Pixel]:
-        normalized_pixels: list[Pixel] = []
-        for render_pixel in render_pixels:
-            normalized_pixels += render_pixel
-        return normalized_pixels
-
 
     def __find_needed_depth(self) -> type[Pixel]:
         biggest_number = PixelXXBit.get_biggest_number()
@@ -93,6 +86,15 @@ class PixelAdapter:
         for pixel_class in self.__pixel_classes:
             if pixel_class.get_color_depth() // 3 >= bits_to_represent_number:
                 return pixel_class
-        return self.__pixel_classes[-1]     #!!!!!!
+        raise ValueError(f'there is no such bit-depth {biggest_number} to represent picture')
+
+
+    @staticmethod
+    def normalize_pixels(render_pixels: list[list[Pixel]]) -> list[Pixel]:
+        normalized_pixels: list[Pixel] = []
+        for render_pixel in render_pixels:
+            normalized_pixels += render_pixel
+        return normalized_pixels
+
 
 

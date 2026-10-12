@@ -5,16 +5,14 @@ from bitmap_create.objects.pixel import *
 from bitmap_create.objects.win_body_head import WinHeader, WinBody
 from bitmap_create.objects.file_IO import PictureCreator, PictureReader
 
-raw_body: bytes|None = PictureReader.read_raw_body('file.bmp')
-header: Header|None = PictureReader.read_header('file.bmp')
-p = PictureReader.create_calculate_pixels(raw_body, header)
+p = PictureReader.get_calculate_pixels('file.bmp')
 
 #logic
 WIDTH: int = 8
 HEIGHT: int = 8
 
 frame = Frame(WIDTH, HEIGHT, pixels=p)
-frame.draw_line(Line(Point(0,0), Point(5, 5)), (255, 0, 0))
+frame.draw_line(Line(Point(0,0), Point(20, 5)), (255, 0, 0))
 
 
 #render

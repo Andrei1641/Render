@@ -50,14 +50,24 @@ class Frame:
                 tmp_line: Line = Line(borders[0], borders[1])
                 self.draw_line(tmp_line, color)
 
-
+    @staticmethod
+    def mirror_point(point: Point, *, x: float|None = None, y: float|None = None) -> Point:
+        if x is not None and y is None:
+            return Point(2 * x - point.x, point.y)
+        elif y is not None and x is None:
+            return Point(point.x, 2 * y - point.y)
+        else:
+            raise ValueError('select only one line')
 
     def draw_line(self, line: Line, color: tuple[int,int,int]):
         tmp_point: Point = Point(line.x_borders[0], line.y_borders[0])
         bigger_borders: tuple[float, float] = line.x_borders if line.x_borders[1] - line.x_borders[0] > line.y_borders[1] - line.y_borders[0] else line.y_borders
         for i in range(round(bigger_borders[0]), round(bigger_borders[1])):
-            tmp_pixel: PixelXXBit = self.__pixels[round(tmp_point.y)][round(tmp_point.x)]
-            tmp_pixel.set_color(color)
+            try:
+                tmp_pixel: PixelXXBit = self.__pixels[round(tmp_point.y)][round(tmp_point.x)]
+                tmp_pixel.set_color(color)
+            except IndexError:
+                pass
             tmp_point = Frame.find_next_point(tmp_point, line)
 
 
@@ -80,12 +90,3 @@ class Frame:
             return Point(point.x + 1, point.y)
         else:
             return Point(point.x, point.y + 1)
-
-    @staticmethod
-    def mirror_point(point: Point, *, x: float|None = None, y: float|None = None) -> Point:
-        if x is not None and y is None:
-            return Point(2 * x - point.x, point.y)
-        elif y is not None and x is None:
-            return Point(point.x, 2 * y - point.y)
-        else:
-            raise ValueError('select only one line')

@@ -9,6 +9,7 @@ class Pixel24Bit(Pixel):
         return 24
 
     def __init__(self, red: int, green: int, blue: int):
+        super().__init__(red, green, blue)
         self.__red = red
         self.__green = green
         self.__blue = blue
