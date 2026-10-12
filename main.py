@@ -3,14 +3,18 @@ from bitmap_calculate.objects.figures import *
 from bitmap_create.interface.body_and_head import Header, Body
 from bitmap_create.objects.pixel import *
 from bitmap_create.objects.win_body_head import WinHeader, WinBody
-from bitmap_create.objects.file_writer import PictureCreator
+from bitmap_create.objects.file_IO import PictureCreator, PictureReader
+
+raw_body: bytes|None = PictureReader.read_raw_body('file.bmp')
+header: Header|None = PictureReader.read_header('file.bmp')
+p = PictureReader.create_calculate_pixels(raw_body, header)
 
 #logic
-WIDTH: int = 200
-HEIGHT: int = 200
+WIDTH: int = 8
+HEIGHT: int = 8
 
-frame = Frame(WIDTH, HEIGHT)
-frame.draw_circle(Point(50, 50), 20, (255, 0, 0))
+frame = Frame(WIDTH, HEIGHT, pixels=p)
+frame.draw_line(Line(Point(0,0), Point(5, 5)), (255, 0, 0))
 
 
 #render
@@ -24,4 +28,4 @@ win_header: Header = WinHeader(
     (len(pixels) * 3), 0, 0, 0, 0
 )
 
-PictureCreator.write_file(win_header, win_body)
+PictureCreator.write_file(win_header, win_body, 'file.bmp')

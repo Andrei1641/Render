@@ -9,6 +9,11 @@ class Translator:
         return list(number.to_bytes(number_of_bytes))
 
     @staticmethod
+    def from_bytes_to_int(b: list[int]) -> int:
+        number = int.from_bytes(bytes(b), byteorder="big")
+        return number
+
+    @staticmethod
     def get_number_of_bits_to_represent_number(number: int) -> int:
         if not number: return 0
         if number == 1: return 1

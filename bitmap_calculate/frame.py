@@ -4,10 +4,13 @@ from bitmap_create.interface.pixel import Pixel
 
 
 class Frame:
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int, *, pixels: list[list[PixelXXBit]]| None = None):
         self.__pixels: list[list[PixelXXBit]] = [] #y x    size is 1X1
-        for i in range(height):
-            self.__pixels.append(PixelXXBit(0,0,0) * width)
+        if not pixels:
+            for i in range(height):
+                self.__pixels.append(PixelXXBit(0,0,0) * width)
+        else:
+            self.__pixels = pixels
 
 
     def get_render_pixels(self) -> list[Pixel]:

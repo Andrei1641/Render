@@ -49,6 +49,14 @@ class WinHeader(Header):
         header_byte_list += WinHeader.__translate_attr_in_byte_getter(self.__biClrImportant, 4)
         return header_byte_list
 
+    def get_body_position(self) -> int:
+        return self.__bfOffBits
+
+    def get_width(self) -> int:
+        return self.__biWidth
+
+    def get_depth(self) -> int:
+        return self.__biBitCount
 
     def __set_bfSize(self, bfSize: int):
         if CreationProver.is_out_of_border(4, bfSize):

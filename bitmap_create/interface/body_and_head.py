@@ -22,3 +22,15 @@ class Header(ABC):
     @abstractmethod
     def get_header(self) -> list[int]:
         ...
+
+    @abstractmethod
+    def get_body_position(self) -> int:
+        ...
+
+    @abstractmethod
+    def get_width(self) -> int:
+        ...
+
+    @abstractmethod
+    def get_depth(self) -> int:
+        ...
